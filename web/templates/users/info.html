@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>info</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+ <!-- head -->
+ <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-11">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/{{id}}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="/ads/{{id}}">My announcement</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-1">
+                 <!-- in and log ? -->
+                <a href="/users/new" class="btn  active" type="button">login/logout</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            </div>
+        </div>
+    </div>
+ <!-- head -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="card-709776">
+                    <div class="card">
+                        <div class="card-header">
+                             <a class="card-link collapsed" data-toggle="collapse" data-parent="#card-709776" href="#card-element-457027">Имя</a>
+                        </div>
+                        <div id="card-element-457027" class="collapse">
+                            <div class="card-body">
+                                {{first_name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                             <a class="card-link collapsed" data-toggle="collapse" data-parent="#card-709776" href="#card-element-31700">Фамилия</a>
+                        </div>
+                        <div id="card-element-31700" class="collapse">
+                            <div class="card-body">
+                                {{last_name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                             <a class="card-link collapsed" data-toggle="collapse" data-parent="#card-709776" href="#card-element-31701">email</a>
+                        </div>
+                        <div id="card-element-31701" class="collapse">
+                            <div class="card-body">
+                                {{email}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                             <a class="card-link collapsed" data-toggle="collapse" data-parent="#card-709776" href="#card-element-31702">телефонный номер</a>
+                        </div>
+                        <div id="card-element-31702" class="collapse">
+                            <div class="card-body">
+                                {{tel_num}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                             <a class="card-link collapsed" data-toggle="collapse" data-parent="#card-709776" href="#card-element-31703">о себе </a>
+                        </div>
+                        <div id="card-element-31703" class="collapse">
+                            <div class="card-body">
+                                {{about}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                             <a class="card-link collapsed" data-toggle="collapse" data-parent="#card-709776" href="#card-element-31704">время регистрации</a>
+                        </div>
+                        <div id="card-element-31704" class="collapse">
+                            <div class="card-body">
+                                {{time_reg}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                     <a href="/users/{{id}}/update" class="btn btn-block active btn-danger" type="button">Изменить</a>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                         <a href="/users/{{id}}/delete" class="btn btn-block btn-outline-danger" type="button">Удалить аккаунт</a>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+            </div>
+</body>
+</html>
