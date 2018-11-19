@@ -1,7 +1,21 @@
 from django.shortcuts import render
 
 def new(request):
-    return render(request, "ads/new.html")
+    if request.method == "POST":
+        regist_title = request.POST.get("title")
+        regist_price = request.POST.get("price")
+        regist_country = request.POST.get("country")
+        regist_subway_station = request.POST.get("subway_station")
+        regist_description = request.POST.get("description")
+        regist_city = request.POST.get("city")
+        return render(request, "users/otladka.html", {"log": regist_title, "pas": regist_price, "fnam" : regist_country, 
+        "lnam": regist_subway_station, "tel": regist_description, "about":regist_city})
+        #в место отладочных полей 
+        #будет отправка POST запроса на сервер 
+        #и ожидания ответа в формате JSON 
+        #return HttpResponseRedirect("/ads")
+    else:
+        return render(request, "ads/new.html")
 
 def delete(request,question_id):
     return render(request, "ads/delete.html")
@@ -238,4 +252,26 @@ def update(request, question_id):
     return render(request, "ads/update.html")
 
 def ad(request, question_id):
-    return render(request, "ads/ad.html")
+    #запрос по id вернуть обьявлние 
+    info = {
+            "id": 1111,
+            "title": "My awesome title",
+            "price": 11111111,
+            "country": "Russia",
+            "city": "Moscow",
+            "subway_station": "Technopark",
+            "images_url": ["ex.com/ad_id/1.png", "ex.com/ad_id/2.png"],
+            "agent_info": 
+                {
+                "id": 11111111111,
+                "first_name": "Random",
+                "last_name": "Valerka",
+                "email": "valerka@example.com",
+                "tel_num": "1-234-56-78",
+                "about": "Some information about this man",
+                "time_reg": "2012.10.1 15:34:41"
+                },
+            "description": "it is awesome service with the best quality!",
+            "time_cre": "2012.10.1 15:40:52"
+            }
+    return render(request, "ads/ad.html", info)
