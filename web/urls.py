@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from ads.views import home_page
 
 urlpatterns = [
     path('ads/', include('ads.urls')),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
+    path('',home_page),
+    path('<int:question_id>/',home_page)
 ]

@@ -1,15 +1,23 @@
 from django.shortcuts import render
+import requests
 
 def new(request):
     if request.method == "POST":
-        regist_title = request.POST.get("title")
-        regist_price = request.POST.get("price")
-        regist_country = request.POST.get("country")
-        regist_subway_station = request.POST.get("subway_station")
-        regist_description = request.POST.get("description")
-        regist_city = request.POST.get("city")
-        return render(request, "users/otladka.html", {"log": regist_title, "pas": regist_price, "fnam" : regist_country, 
-        "lnam": regist_subway_station, "tel": regist_description, "about":regist_city})
+        url = 'http..' # url - для POST отправки
+        userdata = {
+            'title': request.POST.get("title"),
+            'price': request.POST.get("price"),
+            'country': request.POST.get("country"),
+            'subway_station': request.POST.get("subway_station"),
+            'description': request.POST.get("description"),
+            'city': request.POST.get("city"),
+            }
+        headers = {
+            'user-agent': request.META['HTTP_USER_AGENT'],
+            'session_id': 'id......',
+            }
+        resp = requests.post(url, data=userdata, headers=headers)
+        return render(request, "users/otladka.html", userdata)
         #в место отладочных полей 
         #будет отправка POST запроса на сервер 
         #и ожидания ответа в формате JSON 
@@ -20,7 +28,7 @@ def new(request):
 def delete(request,question_id):
     return render(request, "ads/delete.html")
 
-def home_page(request):
+def home_page(request, question_id = 1):
     #пока что хардкод 
     info = {
         "info1" :
