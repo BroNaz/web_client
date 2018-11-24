@@ -21,7 +21,7 @@
                         <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/{{id}}">Profile</a>
+                        <a class="nav-link" href="/users/info">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="/ads/{{id}}">My announcement</a>
@@ -51,27 +51,27 @@
         </div>
     </div>
  <!-- head -->
-    <form method="POST" action="/users/new/">
+    <form method="POST" action="/users/update/">
         {% csrf_token %}
         <p>
             <label>login</label><br>
-            <input type="email" value={{email}} name="email" />
+            <input type="email" required value={{email}} name="email" />
         </p>
         <p>
             <label>Изменить password</label><br>
-            <input type="password" name="password" />
+            <input type="password" required name="password" />
         </p>
         <p>
                 <label>Имя</label><br>
-                <input type="text" value={{first_name}} name="first_name" />
+                <input type="text" required value={{first_name}} name="first_name" />
             </p>
             <p>
                     <label>Фамилия</label><br>
-                    <input type="text" value={{last_name}} name="last_name" />
+                    <input type="text" required value={{last_name}} name="last_name" />
                 </p>
                 <p>
                         <label>номер телефона</label><br>
-                        <input type="tel" value={{tel_num}} name="tel_num" />
+                        <input type="tel" required value={{tel_number}} name="tel_num" />
                     </p>
                     <p>
                             <div class="form-group">

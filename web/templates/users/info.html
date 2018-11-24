@@ -22,7 +22,7 @@
                         <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/{{id}}">Profile</a>
+                        <a class="nav-link" href="/users/info">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="/ads/{{id}}">My announcement</a>
@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-1">
                  <!-- in and log ? -->
-                <a href="/users/new" class="btn  active" type="button">login/logout</a>
+                <a href="/users/login" class="btn  active" type="button">login/logout</a>
             </div>
         </div>
         <div class="row">
@@ -92,7 +92,7 @@
                         </div>
                         <div id="card-element-31702" class="collapse">
                             <div class="card-body">
-                                {{tel_num}}
+                                {{tel_number}}
                             </div>
                         </div>
                     </div>
@@ -106,16 +106,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                             <a class="card-link collapsed" data-toggle="collapse" data-parent="#card-709776" href="#card-element-31704">время регистрации</a>
-                        </div>
-                        <div id="card-element-31704" class="collapse">
-                            <div class="card-body">
-                                {{time_reg}}
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -125,7 +115,7 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                     <a href="/users/{{id}}/update" class="btn btn-block active btn-danger" type="button">Изменить</a>
+                     <a href="/users/update" class="btn btn-block active btn-danger" type="button">Изменить</a>
                 </div>
                 <div class="col-md-2">
                 </div>
@@ -137,7 +127,7 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-8">
-                         <a href="/users/{{id}}/delete" class="btn btn-block btn-outline-danger" type="button">Удалить аккаунт</a>
+                         <a href="/users/delete" class="btn btn-block btn-outline-danger" type="button">Удалить аккаунт</a>
                     </div>
                     <div class="col-md-2">
                     </div>

@@ -21,7 +21,7 @@
                         <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/{{id}}">Profile</a>
+                        <a class="nav-link" href="/users/info">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="/ads/{{id}}">My announcement</a>
@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-1">
                  <!-- in and log ? -->
-                <a href="/users/new" class="btn  active" type="button">login/logout</a>
+                <a href="/users/login" class="btn  active" type="button">login/logout</a>
             </div>
         </div>
         <div class="row">
@@ -55,23 +55,23 @@
         {% csrf_token %}
         <p>
             <label>Введите login</label><br>
-            <input type="email" name="email" />
+            <input type="email" required name="email" />
         </p>
         <p>
             <label>Введите password</label><br>
-            <input type="password" name="password" />
+            <input type="password" required name="password" />
         </p>
         <p>
                 <label>Введите Имя</label><br>
-                <input type="text" name="first_name" />
+                <input type="text" required name="first_name" />
             </p>
             <p>
                     <label>Введите фамилию</label><br>
-                    <input type="text" name="last_name" />
+                    <input type="text" required name="last_name" />
                 </p>
                 <p>
                         <label>Введите свой номер телефона</label><br>
-                        <input type="tel" name="tel_num" />
+                        <input type="tel" required name="tel_num" />
                     </p>
                     <p>
                             <div class="form-group">

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>delete</title>
+    <title>registration</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
@@ -11,8 +11,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </head>
-<body>
-    <!-- head -->
+<body class="container">
+         <!-- head -->
  <div class="container-fluid">
         <div class="row">
             <div class="col-md-11">
@@ -21,16 +21,16 @@
                         <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/info">Profile</a>
+                        <a class="nav-link" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="/ads/{{id}}">My announcement</a>
+                        <a class="nav-link disabled" href="#">My announcement</a>
                     </li>
                 </ul>
             </div>
             <div class="col-md-1">
                  <!-- in and log ? -->
-                <a href="#" class="btn  active" type="button">login/logout</a>
+                <a href="/users/login" class="btn  active" type="button">login/logout</a>
             </div>
         </div>
         <div class="row">
@@ -50,18 +50,21 @@
             </div>
         </div>
     </div>
- <!-- head -->
 
- <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-                 <a href="#" class="btn btn-block active btn-danger" type="button">Удалить аккаунт</a>
-            </div>
-            <div class="col-md-2">
-            </div>
-        </div>
-    </div>
+<form method="POST" action="/users/login/">
+    {% csrf_token %}
+    <p>
+        <label>Email</label><br>
+        <input type="email" required name="email" />
+    </p>
+    <p>
+        <label>Пароль</label><br>
+        <input type="password" required name="password" />
+    </p>
+    <input type="submit" value="Войти" >
+</form>
+<div class="col-md-8">
+        <a href="/users/new" class="btn btn-block active btn-danger" type="button">Регистрация</a>
+   </div>
 </body>
 </html>
