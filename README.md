@@ -1,5 +1,6 @@
 # SearchAndBuildWebClient
 #### Дерево файлов:
+```
 |-- README.md
 |-- ads
 |   |-- __init__.py
@@ -68,4 +69,5 @@
     |       `-- update.html
     |-- urls.py
     `-- wsgi.py
+    ```
 
