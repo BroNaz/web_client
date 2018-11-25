@@ -52,14 +52,36 @@
     </div>
  <!-- head -->
 
- <div class="container-fluid">
+<div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-                 <a href="#" class="btn btn-block active btn-danger" type="button">Удалить аккаунт</a>
+                <div class="media">
+                    <img class="mr-3" alt="Bootstrap Media Preview" src="https://cdn1.savepice.ru/uploads/2018/11/25/be70fc206aff8ee50a2ebff8a2cc5259-full.jpg" />
+                    <div class="media-body">
+                        <h5 class="mt-0">
+                                Благодарим за использование наших продуктов и служб.
+                        </h5>  для улучшения качества работы сервиса укажите причину удаления аккаунта 
+                        <form method="POST" action="/users/delete/">
+                            {% csrf_token %}
+                           <p>
+                                <div class="form-group">
+                                     <label for="exampleTextarea">Введите информацию</label><br>
+                                            <textarea class="form-control" name="info" value=" Я не могу найти производителя, который бы удовлетворял мои потребности." rows="3"></textarea>
+                                            </div>
+                            </p>
+                                                 
+                            <input type="submit" value="Удалить" >
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="col-md-2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
             </div>
         </div>
     </div>

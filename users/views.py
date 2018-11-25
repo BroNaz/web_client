@@ -9,7 +9,24 @@ url_par = 'http://127.0.0.1:8080'
 
 
 def delete(request):
-    return render(request, "users/delete.html")
+    if 'session_id' in request.COOKIES:
+        if request.method =="POST":
+            url = 'http://127.0.0.1:8080/users/profile'
+            headers = {
+            'user-agent': request.META['HTTP_USER_AGENT'],
+            'Cookie': request.COOKIES['session_id'],
+            }
+            resp = requests.delete(url, headers=headers)
+            if (resp.status_code >= 200) and (resp.status_code<=300) :
+                response = redirect("/")
+                response.delete_cookie("session_id")
+                return response
+            else: 
+                return HttpResponse(resp.status_code)
+        else:
+            return render(request, "users/delete.html")
+    else:
+        return redirect("users/login")
 
 def login(request):
     if 'session_id' in request.COOKIES:
