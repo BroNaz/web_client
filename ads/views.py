@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import redirect
+import urllib.parse as urlparse
+from urllib.parse import urlencode
 import requests
 
 def new(request):
@@ -35,34 +37,35 @@ def delete(request,question_id):
     return render(request, "ads/delete.html")
 
 def home_page(request, page = 1):
+    if page <= 0:
+        page = 1 
     url = 'http://127.0.0.1:8080/ads'
+    params = {'limit':10,'offset':(page-1) * 10 }
+    url_parts = list(urlparse.urlparse(url))
+    query = dict(urlparse.parse_qsl(url_parts[4]))
+    query.update(params)
+    url_parts[4] = urlencode(query)
     headers = {
         'user-agent': request.META['HTTP_USER_AGENT'],
     }
-    userdata = {
-                'offset': 100 ,
-                'limit': 10,
-            }
-    resp = requests.get(url, headers=headers, data=userdata)
+    resp = requests.get(urlparse.urlunparse(url_parts), headers=headers)
     if resp.status_code<300:
         info = {'count':len(resp.json())}
         i = 0
         while i <  len(resp.json()):
             info[chr(48+i)] = resp.json()[i]
             i = i+1
-        #info = {'object': resp., 'count': len(resp.json())}
-        #return HttpResponse(resp.json()[0])
         return render(request, "ads/home_page2.html", info)
     else:
         return HttpResponse(resp.status_code)
-    #не забыть об искусственном внесение счетчика !
-    #return render(request, "ads/home_page2.html", info)
+
 
 def update(request, question_id):
     return render(request, "ads/update.html")
 
-def ad(request, id, id_ad):
+def ad(request, id):
     #запрос по id вернуть обьявлние 
+    """
     info = {
             "id": 1111,
             "title": "My awesome title",
@@ -84,4 +87,6 @@ def ad(request, id, id_ad):
             "description": "it is awesome service with the best quality!",
             "time_cre": "2012.10.1 15:40:52"
             }
+            """
+    
     return render(request, "ads/ad.html", info)
