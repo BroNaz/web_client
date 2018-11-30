@@ -96,7 +96,7 @@
                         </div>
                         <div id="card-element-416143" class="collapse">
                             <div class="card-body">
-                                {{agent_info.email}}
+                                {{owner_ad.email}}
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                         </div>
                         <div id="card-element-715741" class="collapse">
                             <div class="card-body">
-                                {{agent_info.tel_num}}
+                                {{owner_ad.tel_number}}
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                        Описание работ:
                     </dt>
                     <dd>
-                        {{description}}
+                        {{description_ad}}
                     </dd>
                     <dt>
                             Стоимость работ:
@@ -140,13 +140,13 @@
                         Исполнитель:
                     </dt>
                     <dd>
-                        {{agent_info.first_name}} , {{agent_info.last_name}}
+                        <a href="{% url 'ads:all_ads' owner_ad.id %}">{{owner_ad.first_name}} , {{owner_ad.last_name}}</a>
                     </dd>
                     <dt>
-                       Время подачи объявления:
+                            Дата подачи объявления :
                     </dt>
                     <dd>
-                        {{time_cre}}
+                        {{creation_time}}
                     </dd>
                 </dl>
             </div>

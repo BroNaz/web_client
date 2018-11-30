@@ -36,6 +36,9 @@ def new(request):
 def delete(request,question_id):
     return render(request, "ads/delete.html")
 
+def update(request, question_id):
+    return render(request, "ads/update.html")
+
 def home_page(request, page = 1):
     if page <= 0:
         page = 1 
@@ -60,33 +63,35 @@ def home_page(request, page = 1):
         return HttpResponse(resp.status_code)
 
 
-def update(request, question_id):
-    return render(request, "ads/update.html")
+def all_ads(request, id):
+    url = 'http://127.0.0.1:8080/users/'
+    url = url + str(id) + '?show_ads=true'
+    headers = {
+        'user-agent': request.META['HTTP_USER_AGENT'],
+    }
+    resp = requests.get(url, headers=headers)
+    if (resp.status_code >= 200) and (resp.status_code<=300) :
+        i = 0
+        info = {}
+        while i <  len(resp.json()):
+            info[str(i)] = resp.json()[i]
+            i = i+1
+        info['all'] = resp.json()
+        return render(request, "ads/all_ads.html", info )
+    else:
+        return HttpResponse(resp.status_code)
 
 def ad(request, id):
     #запрос по id вернуть обьявлние 
-    """
-    info = {
-            "id": 1111,
-            "title": "My awesome title",
-            "price": 11111111,
-            "country": "Russia",
-            "city": "Moscow",
-            "subway_station": "Technopark",
-            "images_url": ["ex.com/ad_id/1.png", "ex.com/ad_id/2.png"],
-            "agent_info": 
-                {
-                "id": 11111111111,
-                "first_name": "Random",
-                "last_name": "Valerka",
-                "email": "valerka@example.com",
-                "tel_num": "1-234-56-78",
-                "about": "Some information about this man",
-                "time_reg": "2012.10.1 15:34:41"
-                },
-            "description": "it is awesome service with the best quality!",
-            "time_cre": "2012.10.1 15:40:52"
-            }
-            """
-    
-    return render(request, "ads/ad.html", info)
+    url = 'http://127.0.0.1:8080/ads/'
+    url = url+str(id)
+    headers = {
+        'user-agent': request.META['HTTP_USER_AGENT'],
+    }
+    resp = requests.get(url, headers=headers)
+    if (resp.status_code >= 200) and (resp.status_code<=300) :
+        json = resp.json()
+        json['creation_time'] = resp.json()['creation_time'][:10]
+        return render(request, "ads/ad.html", json)
+    else:
+        return HttpResponse(resp.status_code)
