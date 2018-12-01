@@ -33,11 +33,82 @@ def new(request):
     else:
         return redirect('users/login')
 
-def delete(request,question_id):
-    return render(request, "ads/delete.html")
+def delete(request,id):
+    if 'session_id' in request.COOKIES:
+        if request.method == "POST":
+            headers['Cookie'] = request.COOKIES['session_id']
+            resp = requests.post(url, data=userdata, headers=headers)
+            if (resp.status_code >= 200) and (resp.status_code<=300) :
+                refe = resp.json()
+                return redirect(refe["Ref"])
+            else:
+                return HttpResponse(resp.status_code)
+        else:
+            resp = requests.get(url, headers=headers)
+            if (resp.status_code >= 200) and (resp.status_code<=300) :
+                return render(request, "ads/update.html", resp.json())
+            else:
+                return HttpResponse(resp.status_code)
+    else:
+        return redirect('users/login')
 
-def update(request, question_id):
-    return render(request, "ads/update.html")
+def update(request,id):
+    if 'session_id' in request.COOKIES:
+        url = 'http://127.0.0.1:8080/ads/'
+        url = url+str(id)
+        headers = {
+            'user-agent': request.META['HTTP_USER_AGENT'],
+        }
+        resp = requests.get(url, headers=headers)
+        if request.method == "POST":
+            url = 'http://127.0.0.1:8080/ads/edit/'
+            url = url + str(id)
+            userdata = {
+                'title': request.POST.get("title"),
+                'price': request.POST.get("price"),
+                'country': request.POST.get("country"),
+                'subway_station': request.POST.get("subway_station"),
+                'description_ad': request.POST.get("description"),
+                'city': request.POST.get("city"),
+                }
+            headers['Cookie'] = request.COOKIES['session_id']
+            resp = requests.post(url, data=userdata, headers=headers)
+            if (resp.status_code >= 200) and (resp.status_code<=300) :
+                refe = resp.json()
+                return redirect(refe["Ref"])
+            else:
+                return HttpResponse(resp.status_code)
+        else:
+            resp = requests.get(url, headers=headers)
+            if (resp.status_code >= 200) and (resp.status_code<=300) :
+                return render(request, "ads/update.html", resp.json())
+            else:
+                return HttpResponse(resp.status_code)
+    else:
+        return redirect('users/login')
+
+def myads(request):
+    if 'session_id' in request.COOKIES:
+        url = 'http://127.0.0.1:8080/users/profile'
+        headers = {
+            'user-agent': request.META['HTTP_USER_AGENT'],
+            'Cookie': request.COOKIES['session_id'],
+            }
+        resp = requests.get(url, headers=headers)
+        if (resp.status_code >= 200) and (resp.status_code<=300) :
+            user_id = resp.json()['id']
+            url = 'http://127.0.0.1:8080/users/'
+            url = url + str(user_id) + '?show_ads=true'
+            resp = requests.get(url, headers=headers)
+            info = {}
+            info['all'] = resp.json()
+            return render(request, "ads/myads.html", info )
+            #return HttpResponse(user_id)
+        else:
+            return HttpResponse(resp.status_code)
+    else:
+         # в случае некорректного session_id
+        return redirect('/')
 
 def home_page(request, page = 1):
     if page <= 0:

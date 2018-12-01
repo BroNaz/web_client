@@ -58,28 +58,6 @@
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-8">
-					<div class="media">
-						<img class="mr-4" alt="Bootstrap Media Preview" src="https://cdn1.savepice.ru/uploads/2018/11/25/be70fc206aff8ee50a2ebff8a2cc5259-full.jpg" />
-                        <dl>
-                            <dt>
-                                    Информация об аккаунте :
-                            </dt>
-                            <dd>
-                                    {{0.owner_ad.first_name}}
-                            </dd>
-                            <dd>
-                                    {{0.owner_ad.last_name}}
-                            </dd>
-                            <dd>
-                                    {{0.owner_ad.tel_number}}
-                            </dd>
-                            <dd>
-                                    {{0.owner_ad.email}}
-                            </dd>
-                            <dd>
-                                    {{0.owner_ad.about}}
-                            </dd>
-					</div>
 					<table class="table">
 						<thead>
 							<tr>
@@ -90,10 +68,10 @@
 									Все объявления
 								</th>
 								<th>
-								     Дата подачи объявления
+                                        Стоимость
 								</th>
 								<th>
-									Стоимость
+									
 								</th>
 							</tr>
 						</thead>
@@ -105,13 +83,15 @@
                                     
                                 </td>
 								<td>
-                                        <a href="{% url 'ads:ad' object.id  %}">{{object.title}}</a>
-								</td>
-								<td>
-                                        {{object.creation_time}}
+                                        <a href="{% url 'ads:ad' object.id %}">{{object.title}}</a> 
+        
 								</td>
 								<td>
                                         {{object.price}} &#x20bd;
+								</td>
+								<td>
+                                         
+                                        <a href="{% url 'ads:update' object.id %}" class="btn btn-block active btn-danger" type="button">Изменить</a>
 								</td>
                             </tr>
                             {% endfor %}
