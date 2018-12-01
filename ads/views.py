@@ -36,21 +36,22 @@ def new(request):
 def delete(request,id):
     if 'session_id' in request.COOKIES:
         if request.method == "POST":
-            headers['Cookie'] = request.COOKIES['session_id']
-            resp = requests.post(url, data=userdata, headers=headers)
+            url = 'http://127.0.0.1:8080/ads/delete/'
+            url = url+str(id)
+            headers = {
+                'user-agent': request.META['HTTP_USER_AGENT'],
+                'Cookie': request.COOKIES['session_id'],
+                }
+            resp = requests.delete(url, headers=headers)
             if (resp.status_code >= 200) and (resp.status_code<=300) :
-                refe = resp.json()
-                return redirect(refe["Ref"])
+                return redirect('ads/myads/')
             else:
                 return HttpResponse(resp.status_code)
         else:
-            resp = requests.get(url, headers=headers)
-            if (resp.status_code >= 200) and (resp.status_code<=300) :
-                return render(request, "ads/update.html", resp.json())
-            else:
-                return HttpResponse(resp.status_code)
+            info = { 'id' : id }
+            return render(request, 'ads/delete.html', info)
     else:
-        return redirect('users/login')
+        return redirect('/users/login')
 
 def update(request,id):
     if 'session_id' in request.COOKIES:
