@@ -13,44 +13,47 @@
 </head>
 <body>
          <!-- head -->
- <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-11">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/info">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="/ads/{{id}}">My announcement</a>
-                    </li>
-                </ul>
+         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-11">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:info' %}" >Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="{% url 'ads:myads' %}">My announcement</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="{% url 'ads:new' %}">Submit an announcement</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-1">
+                     <!-- in and log ? -->
+                    <a href="{% url 'users:login'%}" class="btn  active" type="button">login/logout</a>
+                </div>
             </div>
-            <div class="col-md-1">
-                 <!-- in and log ? -->
-                <a href="/users/new" class="btn  active" type="button">login/logout</a>
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-            </div>
-            <div class="col-md-2">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-            </div>
-        </div>
-    </div>
- <!-- head -->
+     <!-- head -->
  <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
