@@ -1,6 +1,5 @@
 ## @package WEB_USERS
 #  Module control for application "ads"
-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -10,15 +9,19 @@ from urllib.parse import urlencode
 import requests
 
 # base url database
-url_root = 'https://protected-bayou-62297.herokuapp.com'
+url_root = 'https://search-build.herokuapp.com'
 
 
-## Submission of new advertisement function.
-#
-#  in the case of a post request, forwards the fields from the template "ads/new.html" title, price, country, subway_station, description, city  to the database
-#  only works with session_id
-#  with a successful response redirect to the page of the advertisement
+
 def new(request):
+    """
+    def new(request)
+     Submission of new advertisement function.
+
+    in the case of a post request, forwards the fields from the template "ads/new.html" title, price, country, subway_station, description, city  to the database
+    only works with session_id
+    with a successful response redirect to the page of the advertisement
+    """
     if 'session_id' in request.COOKIES:
         if request.method == "POST":
             url = url_root + '/ads/new'
@@ -176,8 +179,25 @@ def home_page(request, page = 1, search = ''):
         i = 0
         while i <  len(resp.json()):
             info[chr(48+i)] = resp.json()[i]
-            i = i+1
+            image = info[chr(48+i)]["ad_images"]
+            if not image:
+                info[chr(48+i)]['image0'] = "https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg"
+                info[chr(48+i)]['image1'] = "https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg"
+                info[chr(48+i)]['image2'] = "https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg"
+                info[chr(48+i)]['image_count'] = 3
+            else:
+                k = 0
+                for j in image:
+                    info[chr(48+i)]['image' + str(k)] = j
+                    k = k + 1
+                info[chr(48+i)]['image_count'] = len(image)
+            if info[chr(48+i)]['image_count'] == 1:
+                info[chr(48+i)]['image1'] = info[chr(48+i)]['image2'] = info[chr(48+i)]['image0']
+            if info[chr(48+i)]['image_count'] == 2:
+                info[chr(48+i)]['image2'] = info[chr(48+i)]['image0']
+            i = i + 1
         return render(request, "ads/home_page2.html", info)
+        #return HttpResponse(resp.text)
     else:
         return HttpResponse(resp.status_code)
         
@@ -206,7 +226,7 @@ def all_ads(request, id):
 ## the function to display all user ads (without access to editing)
 #
 #  template is used "ads/ad.html"
-the function to display all user ads (without access to editing)
+#  the function to display all user ads (without access to editing)
 def ad(request, id):
     url = url_root + '/ads/'
     url = url+str(id)
@@ -217,6 +237,20 @@ def ad(request, id):
     if (resp.status_code >= 200) and (resp.status_code<=300) :
         json = resp.json()
         json['creation_time'] = resp.json()['creation_time'][:10]
+        ad_images = resp.json()['ad_images']
+        k = 0 
+        for a in ad_images:
+            json['ad_images'+str(k)] = a
+            k = k + 1
+        if len(resp.json()['ad_images']) == 0:
+                json['ad_images0'] = "https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg"
+                json['ad_images1'] = "https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg"
+                json['ad_images2'] = "https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg"
+        if len(resp.json()['ad_images']) == 1:
+            json['ad_images1'] = json['ad_images2'] = json['ad_images0']
+        if len(resp.json()['ad_images']) == 2:
+            json['ad_images2'] = json['ad_images0']
         return render(request, "ads/ad.html", json)
+        #return HttpResponse(resp.text)
     else:
         return HttpResponse(resp.status_code)

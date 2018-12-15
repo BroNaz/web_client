@@ -9,7 +9,8 @@ from django.shortcuts import redirect
 import requests
 
 # base url database
-url_root = 'https://protected-bayou-62297.herokuapp.com'
+url_root = 'https://search-build.herokuapp.com'
+
 
 ## User delete function.
 #
@@ -61,7 +62,7 @@ def login(request):
                 response.set_cookie('session_id', resp.headers['Set-Cookie'], expires=expires)
                 return  response 
             else :
-                return HttpResponse("err")  
+                return HttpResponse(resp.text)  
         else:
             return render(request, "users/login.html")
 
@@ -99,7 +100,7 @@ def new_users(request):
             response = redirect('/')
             return  response 
         else :
-            return HttpResponse("err")   
+            return HttpResponse(resp.status_code)   
     else:
         return render(request, "users/new_users.html", )
 

@@ -7,7 +7,7 @@
 
 from django.contrib import admin
 from django.urls import include, path
-from ads.views import home_page, search, asd
+from ads.views import home_page
 
 urlpatterns = [
     path('ads/', include('ads.urls')),
