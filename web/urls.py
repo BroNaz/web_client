@@ -1,9 +1,12 @@
-## @package WEBROOT
-#  Main module control and url redirection
-#
-#  for the path "/ads" redirect to the application "ads"
-#  for the path "/users" redirect to the application "users"
-#  for the path "", "<int:page>/", "<str:search>/", "<str:search>/<int:page>/" function is connected from the application "ads"
+# -*- coding: utf-8 -*-
+
+"""
+  Main module control and url redirection
+
+  for the path "/ads" redirect to the application "ads"
+  for the path "/users" redirect to the application "users"
+  for the path "", "<int:page>/", "<str:search>/", "<str:search>/<int:page>/" function is connected from the application "ads"
+"""
 
 from django.contrib import admin
 from django.urls import include, path

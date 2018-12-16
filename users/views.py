@@ -1,6 +1,7 @@
-## @package WEB_USERS
-#  Module control for application "users"
-
+# -*- coding: utf-8 -*-
+"""
+  Module control for application "users"
+"""
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import registration
@@ -12,10 +13,16 @@ import requests
 url_root = 'https://search-build.herokuapp.com'
 
 
-## User delete function.
-#
-#  is available to the user only with the correct data cookie value
+
 def delete(request):
+    """
+    User delete function.
+    is available to the user only with the correct data cookie value
+
+    Args:
+        request : request, cleaned stores the information about the session
+
+    """
     if 'session_id' in request.COOKIES:
         if request.method =="POST":
             url = url_root + '/users/profile'
@@ -36,12 +43,20 @@ def delete(request):
         return redirect("/users/login/")
 
 
-## User login function.
-#
-#  sends a password and email to the database for comparison, receives a cookie in return "session_id"
-#  render "users/logout.html" if the user is already with cookies
-#  render "users/login.html" if the user is without cookies
+
 def login(request):
+    """
+    User login function.
+    sends a password and email to the database for comparison, receives a cookie in return "session_id"
+
+    Args:
+        request : request, cleaned stores the information about the session
+
+    Returns:
+        render "users/logout.html" if the user is already with cookies
+        render "users/login.html" if the user is without cookies
+
+    """
     if 'session_id' in request.COOKIES: 
         return render(request, "users/logout.html")
     else:
@@ -67,10 +82,18 @@ def login(request):
             return render(request, "users/login.html")
 
 
-## User logout function.
-#
-#  is available to the user only with the correct data cookie value
+
 def logout(request):
+    """
+    User logout function.
+
+    is available to the user only with the correct data cookie value
+
+    Args:
+        request : request, cleaned stores the information about the session
+
+
+    """
     if 'session_id' in request.COOKIES:
         response = redirect("/")
         response.delete_cookie("session_id")
@@ -78,10 +101,16 @@ def logout(request):
     else:
         return HttpResponse("err")
 
-## Сreate new user function
-#
-#  sends a password and email to the database fields email, password, first_name, last_name, tel_num, about from the template "users/new_users.html"
 def new_users(request):
+    """
+    Сreate new user function
+
+    sends a password and email to the database fields email, password, first_name, last_name, tel_num, about from the template "users/new_users.html"
+
+    Args:
+        request : request, cleaned stores the information about the session
+
+    """
     if request.method == "POST":
         url = url_root + '/users/new' 
         userdata = {
@@ -105,22 +134,29 @@ def new_users(request):
         return render(request, "users/new_users.html", )
 
 
-## User information function.
-#
-#  is available to the user only with the correct data cookie value
-#  function that provides information about the registered account (own account)
-#  takes json 
-#  json example : 
-#   {
-#   "id": 123456,
-#   "first_name": "Random",
-#   "last_name": "Valerka",
-#   "email": "valerka@example.com",
-#   "tel_number": "1-234-56-78",
-#   "about": "Some information about this man",
-#   "time_reg": "2012.10.1 15:34:41"
-#   }
 def info(request):
+    """
+    User information function.
+
+    is available to the user only with the correct data cookie value
+    function that provides information about the registered account (own account)
+    takes json 
+    json example : 
+    {
+    "id": 123456,
+    "first_name": "Random",
+    "last_name": "Valerka",
+    "email": "valerka@example.com",
+    "tel_number": "1-234-56-78",
+    "about": "Some information about this man",
+    "time_reg": "2012.10.1 15:34:41"
+    }
+
+    Args:
+        request : request, cleaned stores the information about the session
+
+    """
+
     if 'session_id' in request.COOKIES:
         url = url_root + '/users/profile'
         headers = {
@@ -136,12 +172,18 @@ def info(request):
         return redirect('/users/login/')
 
 
-## User update function.
-#
-#  is available to the user only with the correct data cookie value
-#  sends a password and email to the database fields email, password, first_name, last_name, tel_num, about from the template "users/update.html"
-#  at get request it requests the same json as in "def info(request)"
 def update(request):
+    """
+    User update function.
+
+    is available to the user only with the correct data cookie value
+    sends a password and email to the database fields email, password, first_name, last_name, tel_num, about from the template "users/update.html"
+    at get request it requests the same json as in "def info(request)"
+
+    Args:
+        request : request, cleaned stores the information about the session
+    """
+
     if 'session_id' in request.COOKIES:
         if request.method == "POST":
             userdata = {

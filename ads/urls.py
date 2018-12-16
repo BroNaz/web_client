@@ -1,13 +1,14 @@
-## @package WEB_ADS
-#  Module control and url redirection for application "ads"
-#
-#  for the path "<int:id>/delete/" redirect to the function delete defined in the file views
-#  for the path "new/" redirect to the function new defined in the file views
-#  for the path "<int:id>/" redirect to the function ad defined in the file views
-#  for the path "<int:id>/update/" redirect to the function update defined in the file views
-#  for the path "all/<int:id>" redirect to the function all_ads defined in the file views
-#  for the path "myads/" redirect to the function myads defined in the file views
+# -*- coding: utf-8 -*-
+"""
+   Module control and url redirection for application "ads"
 
+  for the path "<int:id>/delete/" redirect to the function delete defined in the file views
+  for the path "new/" redirect to the function new defined in the file views
+  for the path "<int:id>/" redirect to the function ad defined in the file views
+  for the path "<int:id>/update/" redirect to the function update defined in the file views
+  for the path "all/<int:id>" redirect to the function all_ads defined in the file views
+  for the path "myads/" redirect to the function myads defined in the file views
+"""
 from django.urls import path
 
 from . import views

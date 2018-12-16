@@ -1,5 +1,8 @@
-## @package WEB_USERS
-#  Module control for application "ads"
+# -*- coding: utf-8 -*-
+
+"""
+  Module control for application "ads"
+"""
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -7,6 +10,7 @@ from django.shortcuts import redirect
 import urllib.parse as urlparse
 from urllib.parse import urlencode
 import requests
+
 
 # base url database
 url_root = 'https://search-build.herokuapp.com'
@@ -21,6 +25,10 @@ def new(request):
     in the case of a post request, forwards the fields from the template "ads/new.html" title, price, country, subway_station, description, city  to the database
     only works with session_id
     with a successful response redirect to the page of the advertisement
+
+    Args:
+    request : request, cleaned stores the information about the session
+
     """
     if 'session_id' in request.COOKIES:
         if request.method == "POST":
@@ -49,11 +57,17 @@ def new(request):
         return redirect('/users/login/')
 
 
-## Ad delete feature
-#
-#  cookies are checked for valid data, the advertisement is deleted
-#  @param id This is an announcement id.
+
 def delete(request,id):
+    """
+    Ad delete feature
+    cookies are checked for valid data, the advertisement is deleted
+
+    Args:
+        request : request, cleaned stores the information about the session
+        id(int) : delete advertisement id
+        
+    """
     if 'session_id' in request.COOKIES:
         if request.method == "POST":
             url = url_root + '/ads/delete/'
@@ -75,12 +89,18 @@ def delete(request,id):
 
 
 
-## Ad delete feature
-#
-#  cookies are checked for valid data, the announcements is update
-#  during the POST request, all the same fields are sent as in the "new_ads" function, which are taken from the template "ads/update.html"
-#  @param id This is an announcement id.
 def update(request,id):
+    """
+    Ad delete feature
+
+    cookies are checked for valid data, the announcements is update
+    during the POST request, all the same fields are sent as in the "new_ads" function, which are taken from the template "ads/update.html"
+
+    Args:
+        request : request, cleaned stores the information about the session
+        id(int) : update advertisement id
+    """
+
     if 'session_id' in request.COOKIES:
         url = url_root + '/ads/'
         url = url+str(id)
@@ -116,11 +136,17 @@ def update(request,id):
         return redirect('/users/login/')
 
 
-## function that returns all user declaration
-#
-#  Cookies are checked for the accuracy of the data; in case of success, all ads are displayed.
-#  template is used "ads/myads.html"
 def myads(request):
+    """
+    function that returns all user declaration
+    Cookies are checked for the accuracy of the data; in case of success, all ads are displayed.
+    template is used "ads/myads.html"
+
+    Args:
+        request : request, cleaned stores the information about the session
+
+    """
+
     if 'session_id' in request.COOKIES:
         url = url_root + '/users/profile'
         headers = {
@@ -141,13 +167,20 @@ def myads(request):
     else:
         return redirect('/')
 
-## The main function of the withdrawal of ads
-#
-#  
-#  template is used "ads/home_page2.html"
-#  @param page To coordinate ad numbers that output.
-#  @param search To display ads on request in search.
+ 
 def home_page(request, page = 1, search = ''):
+    """
+    The main function of the withdrawal of ads
+
+    
+    template is used "ads/home_page2.html"
+
+    Args:
+        request : request, cleaned stores the information about the session
+        id(int) : To coordinate ad numbers that output
+        search(str) : To display ads on request in search
+
+    """
     if search != '' and bool(request.GET.get("search")):
         page = 1 
     if page <= 0:
@@ -202,10 +235,16 @@ def home_page(request, page = 1, search = ''):
         return HttpResponse(resp.status_code)
         
 
-## output function of all all user ads (without access to editing)
-#
-#  template is used "ads/ad.html"
+
 def all_ads(request, id):
+    """
+    output function of all all user ads (without access to editing)
+    template is used "ads/ad.html"
+
+    Args:
+        request : request, cleaned stores the information about the session
+        id(int) : user id whose ads are displayed
+    """
     url = url_root + '/users/'
     url = url + str(id) + '?show_ads=true'
     headers = {
@@ -223,11 +262,18 @@ def all_ads(request, id):
     else:
         return HttpResponse(resp.status_code)
 
-## the function to display all user ads (without access to editing)
-#
-#  template is used "ads/ad.html"
-#  the function to display all user ads (without access to editing)
 def ad(request, id):
+    """
+    the function to display all user ads (without access to editing)
+
+    template is used "ads/ad.html"
+    the function to display all user ads (without access to editing)
+
+    Args:
+        request : request, cleaned stores the information about the session
+        id(int) : id advertisement which is displayed
+
+    """
     url = url_root + '/ads/'
     url = url+str(id)
     headers = {
