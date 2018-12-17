@@ -1,89 +1,149 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html><head><title>Python: module web.ads.views</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-</head><body bgcolor="#f0f0f8">
-
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
-<tr bgcolor="#7799ee">
-<td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="web.html"><font color="#ffffff">web</font></a>.<a href="web.ads.html"><font color="#ffffff">ads</font></a>.views</strong></big></big></font></td
-><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/nazbro/coursework/new_web/web/ads/views.py">/home/nazbro/coursework/new_web/web/ads/views.py</a></font></td></tr></table>
-    <p><tt>Module&nbsp;control&nbsp;for&nbsp;application&nbsp;"ads"</tt></p>
-<p>
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#aa55cc">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
-    
-<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="requests.html">requests</a><br>
-</td><td width="25%" valign=top><a href="urllib.parse.html">urllib.parse</a><br>
-</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#eeaa77">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
-    
-<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-ad"><strong>ad</strong></a>(request, id)</dt><dd><tt>the&nbsp;function&nbsp;to&nbsp;display&nbsp;all&nbsp;user&nbsp;ads&nbsp;(without&nbsp;access&nbsp;to&nbsp;editing)<br>
-&nbsp;<br>
-template&nbsp;is&nbsp;used&nbsp;"ads/ad.html"<br>
-the&nbsp;function&nbsp;to&nbsp;display&nbsp;all&nbsp;user&nbsp;ads&nbsp;(without&nbsp;access&nbsp;to&nbsp;editing)<br>
-&nbsp;<br>
-Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
-&nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;id&nbsp;advertisement&nbsp;which&nbsp;is&nbsp;displayed</tt></dd></dl>
- <dl><dt><a name="-all_ads"><strong>all_ads</strong></a>(request, id)</dt><dd><tt>output&nbsp;function&nbsp;of&nbsp;all&nbsp;all&nbsp;user&nbsp;ads&nbsp;(without&nbsp;access&nbsp;to&nbsp;editing)<br>
-template&nbsp;is&nbsp;used&nbsp;"ads/ad.html"<br>
-&nbsp;<br>
-Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
-&nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;user&nbsp;id&nbsp;whose&nbsp;ads&nbsp;are&nbsp;displayed</tt></dd></dl>
- <dl><dt><a name="-delete"><strong>delete</strong></a>(request, id)</dt><dd><tt>Ad&nbsp;delete&nbsp;feature<br>
-cookies&nbsp;are&nbsp;checked&nbsp;for&nbsp;valid&nbsp;data,&nbsp;the&nbsp;advertisement&nbsp;is&nbsp;deleted<br>
-&nbsp;<br>
-Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
-&nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;delete&nbsp;advertisement&nbsp;id</tt></dd></dl>
- <dl><dt><a name="-home_page"><strong>home_page</strong></a>(request, page=1, search='')</dt><dd><tt>The&nbsp;main&nbsp;function&nbsp;of&nbsp;the&nbsp;withdrawal&nbsp;of&nbsp;ads<br>
-&nbsp;<br>
-&nbsp;<br>
-template&nbsp;is&nbsp;used&nbsp;"ads/home_page2.html"<br>
-&nbsp;<br>
-Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
-&nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;To&nbsp;coordinate&nbsp;ad&nbsp;numbers&nbsp;that&nbsp;output<br>
-&nbsp;&nbsp;&nbsp;&nbsp;search(str)&nbsp;:&nbsp;To&nbsp;display&nbsp;ads&nbsp;on&nbsp;request&nbsp;in&nbsp;search</tt></dd></dl>
- <dl><dt><a name="-myads"><strong>myads</strong></a>(request)</dt><dd><tt>function&nbsp;that&nbsp;returns&nbsp;all&nbsp;user&nbsp;declaration<br>
-Cookies&nbsp;are&nbsp;checked&nbsp;for&nbsp;the&nbsp;accuracy&nbsp;of&nbsp;the&nbsp;data;&nbsp;in&nbsp;case&nbsp;of&nbsp;success,&nbsp;all&nbsp;ads&nbsp;are&nbsp;displayed.<br>
-template&nbsp;is&nbsp;used&nbsp;"ads/myads.html"<br>
-&nbsp;<br>
-Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session</tt></dd></dl>
- <dl><dt><a name="-new"><strong>new</strong></a>(request)</dt><dd><tt>def&nbsp;<a href="#-new">new</a>(request)<br>
-&nbsp;Submission&nbsp;of&nbsp;new&nbsp;advertisement&nbsp;function.<br>
-&nbsp;<br>
-in&nbsp;the&nbsp;case&nbsp;of&nbsp;a&nbsp;post&nbsp;request,&nbsp;forwards&nbsp;the&nbsp;fields&nbsp;from&nbsp;the&nbsp;template&nbsp;"ads/new.html"&nbsp;title,&nbsp;price,&nbsp;country,&nbsp;subway_station,&nbsp;description,&nbsp;city&nbsp;&nbsp;to&nbsp;the&nbsp;database<br>
-only&nbsp;works&nbsp;with&nbsp;session_id<br>
-with&nbsp;a&nbsp;successful&nbsp;response&nbsp;redirect&nbsp;to&nbsp;the&nbsp;page&nbsp;of&nbsp;the&nbsp;advertisement<br>
-&nbsp;<br>
-Args:<br>
-request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session</tt></dd></dl>
- <dl><dt><a name="-update"><strong>update</strong></a>(request, id)</dt><dd><tt>Ad&nbsp;delete&nbsp;feature<br>
-&nbsp;<br>
-cookies&nbsp;are&nbsp;checked&nbsp;for&nbsp;valid&nbsp;data,&nbsp;the&nbsp;announcements&nbsp;is&nbsp;update<br>
-during&nbsp;the&nbsp;POST&nbsp;request,&nbsp;all&nbsp;the&nbsp;same&nbsp;fields&nbsp;are&nbsp;sent&nbsp;as&nbsp;in&nbsp;the&nbsp;"new_ads"&nbsp;function,&nbsp;which&nbsp;are&nbsp;taken&nbsp;from&nbsp;the&nbsp;template&nbsp;"ads/update.html"<br>
-&nbsp;<br>
-Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
-&nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;update&nbsp;advertisement&nbsp;id</tt></dd></dl>
-</td></tr></table><p>
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#55aa55">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
-    
-<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>url_root</strong> = 'https://search-build.herokuapp.com'</td></tr></table>
-</body></html>
+<html>
+   <head>
+      <title>Python: module web.ads.views</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   </head>
+   <body bgcolor="#f0f0f8">
+      <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+         <tr bgcolor="#7799ee">
+            <td valign=bottom>&nbsp;<br>
+               <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="web.html"><font color="#ffffff">web</font></a>.<a href="web.ads.html"><font color="#ffffff">ads</font></a>.views</strong></big></big></font>
+            </td
+               >
+            <td align=right valign=bottom
+               ><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/nazbro/coursework/new_web/web/ads/views.py">/home/nazbro/coursework/new_web/web/ads/views.py</a></font></td>
+         </tr>
+      </table>
+      <p><tt>Module&nbsp;control&nbsp;for&nbsp;application&nbsp;"ads"</tt></p>
+      <p>
+      <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+         <tr bgcolor="#aa55cc">
+            <td colspan=3 valign=bottom>&nbsp;<br>
+               <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font>
+            </td>
+         </tr>
+         <tr>
+            <td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td>
+            <td>&nbsp;</td>
+            <td width="100%">
+               <table width="100%" summary="list">
+                  <tr>
+                     <td width="25%" valign=top><a href="requests.html">requests</a><br></td>
+                     <td width="25%" valign=top><a href="urllib.parse.html">urllib.parse</a><br></td>
+                     <td width="25%" valign=top></td>
+                     <td width="25%" valign=top></td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+      </table>
+      <p>
+      <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+         <tr bgcolor="#eeaa77">
+            <td colspan=3 valign=bottom>&nbsp;<br>
+               <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font>
+            </td>
+         </tr>
+         <tr>
+            <td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td>
+            <td>&nbsp;</td>
+            <td width="100%">
+               <dl>
+                  <dt><a name="-ad"><strong>ad</strong></a>(request, id)</dt>
+                  <dd><tt>the&nbsp;function&nbsp;to&nbsp;display&nbsp;all&nbsp;user&nbsp;ads&nbsp;(without&nbsp;access&nbsp;to&nbsp;editing)<br>
+                     &nbsp;<br>
+                     template&nbsp;is&nbsp;used&nbsp;"ads/ad.html"<br>
+                     the&nbsp;function&nbsp;to&nbsp;display&nbsp;all&nbsp;user&nbsp;ads&nbsp;(without&nbsp;access&nbsp;to&nbsp;editing)<br>
+                     &nbsp;<br>
+                     Args:<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;id&nbsp;advertisement&nbsp;which&nbsp;is&nbsp;displayed</tt>
+                  </dd>
+               </dl>
+               <dl>
+                  <dt><a name="-all_ads"><strong>all_ads</strong></a>(request, id)</dt>
+                  <dd><tt>output&nbsp;function&nbsp;of&nbsp;all&nbsp;all&nbsp;user&nbsp;ads&nbsp;(without&nbsp;access&nbsp;to&nbsp;editing)<br>
+                     template&nbsp;is&nbsp;used&nbsp;"ads/ad.html"<br>
+                     &nbsp;<br>
+                     Args:<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;user&nbsp;id&nbsp;whose&nbsp;ads&nbsp;are&nbsp;displayed</tt>
+                  </dd>
+               </dl>
+               <dl>
+                  <dt><a name="-delete"><strong>delete</strong></a>(request, id)</dt>
+                  <dd><tt>Ad&nbsp;delete&nbsp;feature<br>
+                     cookies&nbsp;are&nbsp;checked&nbsp;for&nbsp;valid&nbsp;data,&nbsp;the&nbsp;advertisement&nbsp;is&nbsp;deleted<br>
+                     &nbsp;<br>
+                     Args:<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;delete&nbsp;advertisement&nbsp;id</tt>
+                  </dd>
+               </dl>
+               <dl>
+                  <dt><a name="-home_page"><strong>home_page</strong></a>(request, page=1, search='')</dt>
+                  <dd><tt>The&nbsp;main&nbsp;function&nbsp;of&nbsp;the&nbsp;withdrawal&nbsp;of&nbsp;ads<br>
+                     &nbsp;<br>
+                     &nbsp;<br>
+                     template&nbsp;is&nbsp;used&nbsp;"ads/home_page2.html"<br>
+                     &nbsp;<br>
+                     Args:<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;To&nbsp;coordinate&nbsp;ad&nbsp;numbers&nbsp;that&nbsp;output<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;search(str)&nbsp;:&nbsp;To&nbsp;display&nbsp;ads&nbsp;on&nbsp;request&nbsp;in&nbsp;search</tt>
+                  </dd>
+               </dl>
+               <dl>
+                  <dt><a name="-myads"><strong>myads</strong></a>(request)</dt>
+                  <dd><tt>function&nbsp;that&nbsp;returns&nbsp;all&nbsp;user&nbsp;declaration<br>
+                     Cookies&nbsp;are&nbsp;checked&nbsp;for&nbsp;the&nbsp;accuracy&nbsp;of&nbsp;the&nbsp;data;&nbsp;in&nbsp;case&nbsp;of&nbsp;success,&nbsp;all&nbsp;ads&nbsp;are&nbsp;displayed.<br>
+                     template&nbsp;is&nbsp;used&nbsp;"ads/myads.html"<br>
+                     &nbsp;<br>
+                     Args:<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session</tt>
+                  </dd>
+               </dl>
+               <dl>
+                  <dt><a name="-new"><strong>new</strong></a>(request)</dt>
+                  <dd><tt>def&nbsp;<a href="#-new">new</a>(request)<br>
+                     &nbsp;Submission&nbsp;of&nbsp;new&nbsp;advertisement&nbsp;function.<br>
+                     &nbsp;<br>
+                     in&nbsp;the&nbsp;case&nbsp;of&nbsp;a&nbsp;post&nbsp;request,&nbsp;forwards&nbsp;the&nbsp;fields&nbsp;from&nbsp;the&nbsp;template&nbsp;"ads/new.html"&nbsp;title,&nbsp;price,&nbsp;country,&nbsp;subway_station,&nbsp;description,&nbsp;city&nbsp;&nbsp;to&nbsp;the&nbsp;database<br>
+                     only&nbsp;works&nbsp;with&nbsp;session_id<br>
+                     with&nbsp;a&nbsp;successful&nbsp;response&nbsp;redirect&nbsp;to&nbsp;the&nbsp;page&nbsp;of&nbsp;the&nbsp;advertisement<br>
+                     &nbsp;<br>
+                     Args:<br>
+                     request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session</tt>
+                  </dd>
+               </dl>
+               <dl>
+                  <dt><a name="-update"><strong>update</strong></a>(request, id)</dt>
+                  <dd><tt>Ad&nbsp;delete&nbsp;feature<br>
+                     &nbsp;<br>
+                     cookies&nbsp;are&nbsp;checked&nbsp;for&nbsp;valid&nbsp;data,&nbsp;the&nbsp;announcements&nbsp;is&nbsp;update<br>
+                     during&nbsp;the&nbsp;POST&nbsp;request,&nbsp;all&nbsp;the&nbsp;same&nbsp;fields&nbsp;are&nbsp;sent&nbsp;as&nbsp;in&nbsp;the&nbsp;"new_ads"&nbsp;function,&nbsp;which&nbsp;are&nbsp;taken&nbsp;from&nbsp;the&nbsp;template&nbsp;"ads/update.html"<br>
+                     &nbsp;<br>
+                     Args:<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;:&nbsp;request,&nbsp;cleaned&nbsp;stores&nbsp;the&nbsp;information&nbsp;about&nbsp;the&nbsp;session<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;id(int)&nbsp;:&nbsp;update&nbsp;advertisement&nbsp;id</tt>
+                  </dd>
+               </dl>
+            </td>
+         </tr>
+      </table>
+      <p>
+      <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+         <tr bgcolor="#55aa55">
+            <td colspan=3 valign=bottom>&nbsp;<br>
+               <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font>
+            </td>
+         </tr>
+         <tr>
+            <td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td>
+            <td>&nbsp;</td>
+            <td width="100%"><strong>url_root</strong> = 'https://search-build.herokuapp.com'</td>
+         </tr>
+      </table>
+   </body>
+</html>
