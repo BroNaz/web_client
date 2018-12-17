@@ -1,5 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Documentation](https://img.shields.io/badge/code-documentation-brightgreen.svg)](https://developers34.pages.bmstu.codes/android-application/app/)
+[![Documentation](https://img.shields.io/badge/code-documentation-brightgreen.svg)](https://developers34.pages.bmstu.codes/web-client/web.html)
 # SearchAndBuildWebClient
 #### Дерево файлов:
 ```
