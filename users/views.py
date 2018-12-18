@@ -36,7 +36,9 @@ def delete(request):
                 response.delete_cookie("session_id")
                 return response
             else: 
-                return HttpResponse(resp.status_code)
+                object_err = resp.json()
+                object_err['status'] = resp.status_code
+                return render(request, "errors.html",  object_err)
         else:
             return render(request, "users/delete.html")
     else:
@@ -77,7 +79,9 @@ def login(request):
                 response.set_cookie('session_id', resp.headers['Set-Cookie'], expires=expires)
                 return  response 
             else :
-                return HttpResponse(resp.text)  
+                object_err = resp.json()
+                object_err['status'] = resp.status_code
+                return render(request, "errors.html",  object_err)  
         else:
             return render(request, "users/login.html")
 
@@ -129,7 +133,9 @@ def new_users(request):
             response = redirect('/')
             return  response 
         else :
-            return HttpResponse(resp.status_code)   
+            object_err = resp.json()
+            object_err['status'] = resp.status_code
+            return render(request, "errors.html",  object_err)   
     else:
         return render(request, "users/new_users.html", )
 
@@ -167,7 +173,9 @@ def info(request):
         if (resp.status_code >= 200) and (resp.status_code<=300) :
             return render(request, "users/info.html", resp.json())
         else:
-            return HttpResponse(resp.status_code) # отрисовать стр ошибок  
+            object_err = resp.json()
+            object_err['status'] = resp.status_code
+            return render(request, "errors.html",  object_err)  
     else:
         return redirect('/users/login/')
 
@@ -204,7 +212,9 @@ def update(request):
                 resp = requests.get(url, headers=headers)
                 return render(request, "users/info.html", resp.json())
             else:
-                return HttpResponse(resp.status_code) # отрисовать стр ошибок
+                object_err = resp.json()
+                object_err['status'] = resp.status_code
+                return render(request, "errors.html",  object_err)
         else:
             url = url_root + '/users/profile'
             headers = {
@@ -215,6 +225,8 @@ def update(request):
             if (resp.status_code >= 200) and (resp.status_code<=300) :
                 return render(request, "users/update.html", resp.json())
             else:
-                return HttpResponse(resp.status_code) # отрисовать стр ошибок
+                object_err = resp.json()
+                object_err['status'] = resp.status_code
+                return render(request, "errors.html",  object_err)
     else :
         return redirect('/users/login/')

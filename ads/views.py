@@ -50,7 +50,9 @@ def new(request):
                 refe = resp.json()
                 return redirect(refe["Ref"])
             else:
-                return HttpResponse(resp.status_code)
+                object_err = resp.json()
+                object_err['status'] = resp.status_code
+                return render(request, "errors.html",  object_err)
         else:
             return render(request, "ads/new.html")
     else:
@@ -80,7 +82,9 @@ def delete(request,id):
             if (resp.status_code >= 200) and (resp.status_code<=300) :
                 return redirect('/ads/myads/')
             else:
-                return HttpResponse(resp.status_code)
+                object_err = resp.json()
+                object_err['status'] = resp.status_code
+                return render(request, "errors.html",  object_err)
         else:
             info = { 'id' : id }
             return render(request, 'ads/delete.html', info)
@@ -125,13 +129,17 @@ def update(request,id):
                 refe = resp.json()
                 return redirect(refe["Ref"])
             else:
-                return HttpResponse(resp.status_code)
+                object_err = resp.json()
+                object_err['status'] = resp.status_code
+                return render(request, "errors.html",  object_err)
         else:
             resp = requests.get(url, headers=headers)
             if (resp.status_code >= 200) and (resp.status_code<=300) :
                 return render(request, "ads/update.html", resp.json())
             else:
-                return HttpResponse(resp.status_code)
+                object_err = resp.json()
+                object_err['status'] = resp.status_code
+                return render(request, "errors.html",  object_err)
     else:
         return redirect('/users/login/')
 
@@ -163,7 +171,9 @@ def myads(request):
             info['all'] = resp.json()
             return render(request, "ads/myads.html", info )
         else:
-            return HttpResponse(resp.status_code)
+            object_err = resp.json()
+            object_err['status'] = resp.status_code
+            return render(request, "errors.html",  object_err)
     else:
         return redirect('/')
 
@@ -232,7 +242,9 @@ def home_page(request, page = 1, search = ''):
         return render(request, "ads/home_page2.html", info)
         #return HttpResponse(resp.text)
     else:
-        return HttpResponse(resp.status_code)
+        object_err = resp.json()
+        object_err['status'] = resp.status_code
+        return render(request, "errors.html",  object_err)
         
 
 
@@ -260,7 +272,9 @@ def all_ads(request, id):
         info['all'] = resp.json()
         return render(request, "ads/all_ads.html", info )
     else:
-        return HttpResponse(resp.status_code)
+        object_err = resp.json()
+        object_err['status'] = resp.status_code
+        return render(request, "errors.html",  object_err)
 
 def ad(request, id):
     """
@@ -299,4 +313,6 @@ def ad(request, id):
         return render(request, "ads/ad.html", json)
         #return HttpResponse(resp.text)
     else:
-        return HttpResponse(resp.status_code)
+        object_err = resp.json()
+        object_err['status'] = resp.status_code
+        return render(request, "errors.html",  object_err)
